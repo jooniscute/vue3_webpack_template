@@ -1,8 +1,13 @@
 <template>
   <header>
-    <div class="nav">
+    <div class="nav nav-pills">
       <div class="nav-item" v-for="nav in navigations" :key="nav.name">
-        <router-link class="nav-link" :to="nav.path">{{ nav.name }}</router-link>
+        <!-- RouterLink: a tag 대신 vue에서 제공하는 요소 
+             active일 경우 router-link-active class 추가됨
+             그냥 active로 적용되게 하려면? active-class 속성 추가 -->
+        <RouterLink class="nav-link" active-class="active" :to="nav.href">
+          {{ nav.name }}
+        </RouterLink>
       </div>
     </div>
   </header>
@@ -15,11 +20,11 @@ export default {
       navigations: [
         {
           name: "Home",
-          path: "/",
+          href: "/",
         },
         {
           name: "About",
-          path: "/about",
+          href: "/about",
         },
       ],
     };
