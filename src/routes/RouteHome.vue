@@ -1,8 +1,6 @@
 <template>
   <h1>Home: Hello Vue!!</h1>
-  <p>
-    <router-link to="/about">Go to About</router-link>
-  </p>
+  <router-link to="/about" class="btn btn-primary">Go to About</router-link>
   <JkLogo />
 </template>
 
