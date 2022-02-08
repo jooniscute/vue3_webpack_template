@@ -21,9 +21,9 @@ export default {
     // },
   },
 
-  // methods - state를 수정하지 못함. 비동기 동작! context를 인자로 함
+  // methods - state를 수정하지 못함. 비동기 동작! context, payload를 인자로 함
   actions: {
-    // searchMovies({ state, getters, commit }) {
+    // searchMovies({ state, getters, commit }, payload) {
     //   console.log(state, getters, commit);
     // },
   },
