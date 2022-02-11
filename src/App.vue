@@ -1,13 +1,16 @@
 <template>
-  <Header />
+  <PageHeader />
   <RouterView />
+  <PageFooter />
 </template>
 
 <script>
-import Header from "~/components/NavHeader";
+import PageHeader from "~/components/PageHeader";
+import PageFooter from "~/components/PageFooter";
 export default {
   components: {
-    Header,
+    PageHeader,
+    PageFooter,
   },
 };
 </script>
