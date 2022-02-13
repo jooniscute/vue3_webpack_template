@@ -4,7 +4,11 @@ export default {
 
   // data
   state: () => ({
-    // movies: [],
+    name: "JK",
+    email: "chlwnsrms5@gmail.com",
+    github: "www.github.com/jooniscute",
+    phone: "+82-10-9866-1566",
+    image: "logo.png",
   }),
 
   // computed 속성 (state로 계산)
