@@ -1,16 +1,17 @@
 <template>
-  <LoadingSpinner v-if="imageLoading" z-index="9" absolute />
   <div
-    :style="{ backgroundImage: `url(${requestDiffSizeImage(url)})` }"
+    :style="{ backgroundImage: `url(${url})` }"
     style="
-      posotion: relative;
+      position: relative;
       height: 750px;
       width: 500px;
       background-size: cover;
       background-position: center;
     "
     class="poster"
-  ></div>
+  >
+    <LoadingSpinner v-if="imageLoading" :z-index="9" absolute />
+  </div>
 </template>
 
 <script>
@@ -36,17 +37,13 @@ export default {
       const res = await axios.get(
         `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
       );
-      this.url = res.data.Search[0].Poster;
-    },
-    requestDiffSizeImage(url, size = 700) {
-      const src = url.replace("SX300", `SX${size}`);
-      this.$loadImage(src).then(() => {
+      this.url = res.data.Search[0].Poster.replace("SX300", `SX700`);
+      this.$loadImage(this.url).then(() => {
         this.imageLoading = false;
       });
-      return src;
     },
   },
-  created() {
+  mounted() {
     this.loadMoviePoster();
   },
 };

@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <div class="photo">
+      <LoadingSpinner v-if="imageLoading" absolute />
       <img :src="require(`../assets/${image}`).default" :alt="name" />
     </div>
     <div class="name">
@@ -13,7 +14,14 @@
 </template>
 
 <script>
+import LoadingSpinner from "~/components/LoadingSpinner";
 export default {
+  components: {
+    LoadingSpinner,
+  },
+  data() {
+    return { imageLoading: true };
+  },
   computed: {
     image() {
       return this.$store.state.about.image;
@@ -31,6 +39,15 @@ export default {
       return this.$store.state.about.phone;
     },
   },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    async init() {
+      await this.$loadImage(require(`../assets/${this.image}`).default);
+      this.imageLoading = false;
+    },
+  },
 };
 </script>
 
@@ -44,6 +61,7 @@ export default {
     margin: 40px auto 20px;
     padding: 30px;
     box-sizing: border-box;
+    position: relative;
     // background-color: $gray-200;
     img {
       width: 100%;
