@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="{ backgroundImage: `url(${url})` }"
+    :style="{ backgroundImage: `url(${requestDiffSizeImage(url)})` }"
     style="
       position: relative;
       height: 750px;
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import LoadingSpinner from "~/components/LoadingSpinner";
 export default {
   components: {
@@ -23,28 +22,33 @@ export default {
   },
   data() {
     return {
-      url: "",
+      imdbId: "tt0879870",
       imageLoading: true,
     };
   },
-  methods: {
-    async loadMoviePoster() {
-      const title = "Eat Pray Love";
-      const type = "movie";
-      const year = "2010";
-      const page = 1;
-      const OMDB_API_KEY = "aba4220b";
-      const res = await axios.get(
-        `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
-      );
-      this.url = res.data.Search[0].Poster.replace("SX300", `SX700`);
-      this.$loadImage(this.url).then(() => {
-        this.imageLoading = false;
-      });
+  computed: {
+    url() {
+      return this.$store.state.imageLoadSample.url;
     },
   },
-  mounted() {
-    this.loadMoviePoster();
+  methods: {
+    requestDiffSizeImage(url, size = 700) {
+      if (!url || url === "N/A") {
+        this.imageLoading = false;
+        return "";
+      }
+      // then을 쓰면 return이 비동기랑 상관 없어지므로 src는 바로 반환함
+      const src = url.replace("SX300", `SX${size}`);
+      this.$loadImage(src).then(() => {
+        this.imageLoading = false;
+      });
+      return src;
+    },
+  },
+  created() {
+    this.$store.dispatch("imageLoadSample/getPoster", {
+      id: this.imdbId,
+    });
   },
 };
 </script>
