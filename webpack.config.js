@@ -2,7 +2,8 @@ const path = require("path");
 const HtmlPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
-const Webpack = require("webpack");
+const { DefinePlugin } = require("webpack");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   resolve: {
@@ -24,7 +25,7 @@ module.exports = {
 
   devServer: {
     host: "localhost",
-    port: 8081,
+    port: 8080,
   },
 
   plugins: [
@@ -35,7 +36,8 @@ module.exports = {
       patterns: [{ from: "static" }],
     }),
     new VueLoaderPlugin(),
-    new Webpack.DefinePlugin({ __VUE_OPTIONS_API__: true, __VUE_PROD_DEVTOOLS__: true }),
+    new DefinePlugin({ __VUE_OPTIONS_API__: true, __VUE_PROD_DEVTOOLS__: true }),
+    new Dotenv(),
   ],
 
   module: {

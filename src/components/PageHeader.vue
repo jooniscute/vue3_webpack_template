@@ -38,3 +38,19 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+header {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  // Breakpoint - 뷰포트가 sm보다 작은 경우 nav 감추기
+  @include media-breakpoint-down(sm) {
+    .nav {
+      display: none;
+    }
+  }
+}
+</style>

@@ -9,3 +9,9 @@ export default {
   components: { ImageLoadSample },
 };
 </script>
+
+<style>
+h1 {
+  color: $primary;
+}
+</style>

@@ -39,9 +39,9 @@ export default {
   },
 };
 import axios from "axios";
+const { OMDB_API_KEY } = process.env;
 async function getMovieData(payload) {
   const { title, type, year, page, id } = payload;
-  const OMDB_API_KEY = "aba4220b";
   const url = id
     ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`
     : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`;
