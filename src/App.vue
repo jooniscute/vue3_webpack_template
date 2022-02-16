@@ -1,5 +1,6 @@
 <template>
   <PageHeader />
+  <!-- RouterView: 페이지가 출력되는 영역 컴포넌트 -->
   <RouterView />
   <PageFooter />
 </template>
@@ -15,6 +16,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "~/scss/main";
-</style>
+<style lang="scss"></style>

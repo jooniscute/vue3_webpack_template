@@ -15,6 +15,7 @@
 
 <script>
 import LoadingSpinner from "~/components/LoadingSpinner";
+import { mapState } from "vuex";
 export default {
   components: {
     LoadingSpinner,
@@ -23,21 +24,7 @@ export default {
     return { imageLoading: true };
   },
   computed: {
-    image() {
-      return this.$store.state.about.image;
-    },
-    name() {
-      return this.$store.state.about.name;
-    },
-    email() {
-      return this.$store.state.about.email;
-    },
-    github() {
-      return this.$store.state.about.github;
-    },
-    phone() {
-      return this.$store.state.about.phone;
-    },
+    ...mapState("about", ["image", "name", "email", "github", "phone"]),
   },
   mounted() {
     this.init();
@@ -52,7 +39,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
 .about {
   text-align: center;
   .photo {

@@ -50,7 +50,14 @@ module.exports = {
           "vue-style-loader", // 로드한 css를 해석하여 vue에 삽입해줌
           "css-loader", // css를 로드할 수 있게 해줌
           "postcss-loader", // scss 해석한 내용에 postcss 적용
-          "sass-loader", // js 에서 scss를 로드할 수 있게 해줌
+          /* js 에서 scss를 로드할 수 있게 해줌
+          option의 코드가 모든 scss 앞단에 추가됨 - 전역 스타일 적용 */
+          {
+            loader: "sass-loader",
+            options: {
+              additionalData: '@import "~/scss/main";',
+            },
+          },
         ],
       },
       {

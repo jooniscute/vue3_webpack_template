@@ -29,5 +29,12 @@ export default {
       ],
     };
   },
+  methods: {
+    // $router: 페이지 조작을 위한 객체
+    // RouterLink 대신 아래 메소드를 @click 등으로 연결하여 이동 가능
+    toAbout() {
+      this.$router.push("/about");
+    },
+  },
 };
 </script>
