@@ -13,6 +13,7 @@ module.exports = {
   // 정규식과 일치하는 파일의 변환 모듈 지정
   transform: {
     "^.+\\.vue$": "vue-jest",
-    "^.+\\.js$": "babel-jest",
+    "^.+\\.(js|jsx)?$": "babel-jest",
+    ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
   },
 };
